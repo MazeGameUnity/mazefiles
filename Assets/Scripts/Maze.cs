@@ -54,12 +54,17 @@ public class Maze : MonoBehaviour {
 
     private MazeCell CreateCell(IntVector2 coordinates)
     {
+        MazeCell newRoof = Instantiate(cellPrefab) as MazeCell;
         MazeCell newCell = Instantiate(cellPrefab) as MazeCell;
         cells[coordinates.x, coordinates.z] = newCell;
         newCell.coordinates = coordinates;
         newCell.name = "Maze Cell " + coordinates.x + ", " + coordinates.z;
         newCell.transform.parent = transform;
         newCell.transform.localPosition = new Vector3(coordinates.x - size.x * 1f + 1f, 0f, coordinates.z - size.z * 1f + 1f);
+        newRoof.coordinates = coordinates;
+        newRoof.name = "Maze Cell Roof" + coordinates.x + ", " + coordinates.z;
+        newRoof.transform.parent = transform;
+        newRoof.transform.localPosition = new Vector3(coordinates.x - size.x * 1f + 1f, 2f, coordinates.z - size.z * 1f + 1f);
         return newCell;
     }
 
